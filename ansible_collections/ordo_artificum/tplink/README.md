@@ -46,8 +46,11 @@ share the same frameset-based HTTP interface are likely compatible.
 - Ansible 2.9 or later
 - Python `requests` library on the **controller** node
 
+The SDK is also available as a standalone pip package (`tplink-tool`) if
+you want to use it directly from Python:
+
 ```bash
-pip install requests
+pip install tplink-tool   # SDK only
 ```
 
 ---

@@ -21,7 +21,7 @@ when the session expires.
 
 Usage
 -----
-    from tplink_switch import Switch, PortSpeed
+    from tplink_tool import Switch, PortSpeed
 
     with Switch('10.1.1.239', password='b1gsecret') as sw:
         info = sw.get_system_info()
@@ -1224,3 +1224,5 @@ class Switch:
                 length_m=raw_length,
             ))
         return results
+
+__version__ = '0.1.0'
