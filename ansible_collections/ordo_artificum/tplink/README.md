@@ -4,15 +4,20 @@ Manage TP-Link managed switches entirely from Ansible — no CLI, no SSH,
 no REST API required.  The collection reverse-engineers the switch's HTTP
 web UI and exposes all configuration as idempotent Ansible modules.
 
-> **Early release — lightly tested.**  This collection is new.  All
-> modules have been exercised against a single TL-SG108E (hardware v6.0,
-> firmware 1.0.0 Build 20230218 Rel.50633), but coverage on other models
-> and firmware versions is unknown.  Please open an issue if something
-> doesn't work on your hardware.
+## Verified hardware
 
-Developed and tested against the **TL-SG108E** (hardware v6.0, firmware
-1.0.0 Build 20230218 Rel.50633).  Other TP-Link managed switches that
-share the same frameset-based HTTP interface are likely compatible.
+The following hardware has been confirmed working end-to-end with all
+collection modules:
+
+| Model | Hardware version | Firmware | Notes |
+|-------|-----------------|----------|-------|
+| TL-SG108E | v6.0 | 1.0.0 Build 20230218 Rel.50633 | Cookie-based session |
+| TL-SG1016DE | v2.0 | 1.0.1 Build 20151218 Rel.58739 | IP-based session; VLAN 1 membership immutable |
+
+Other TP-Link Easy Smart and DE-series models with the same web UI are
+expected to work.  Use the `model` parameter (see module docs below) if
+autodetection fails on an untested model.  Please open an issue if
+something doesn't work on your hardware.
 
 ---
 
@@ -159,6 +164,11 @@ All modules share these common connection parameters:
 | `username` | no       | `admin` | Login username |
 | `password` | yes      |         | Login password |
 | `timeout`  | no       | `10.0`  | HTTP request timeout (seconds) |
+| `model`    | no       | (auto)  | Override model detection: `TL-SG108E`, `TL-SG1016DE`, `Switch`, `SwitchDE`, etc. |
+
+The `model` parameter is only needed if autodetection fails.  When omitted,
+the SDK probes `SystemInfoRpm.htm` to identify the switch model and selects
+the correct protocol implementation automatically.
 
 ---
 

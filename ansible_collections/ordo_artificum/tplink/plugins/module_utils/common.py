@@ -9,6 +9,7 @@ try:
     from ansible_collections.ordo_artificum.tplink.plugins.module_utils.tplink_switch import (
         Switch, PortSpeed, QoSMode, StormType, STORM_RATE_KBPS,
         _bits_to_ports, _ports_to_bits,
+        make_switch as _sdk_make_switch,
     )
     HAS_SDK = True
     SDK_ERROR = None
@@ -22,6 +23,7 @@ except ImportError as e:
     STORM_RATE_KBPS = {}
     _bits_to_ports = None
     _ports_to_bits = None
+    _sdk_make_switch = None
 
 
 # ---------------------------------------------------------------------------
@@ -33,16 +35,26 @@ CONNECTION_ARGS = dict(
     username=dict(type='str', default='admin'),
     password=dict(type='str', required=True, no_log=True),
     timeout=dict(type='float', default=10.0),
+    model=dict(type='str', default=None),
 )
 
 
 def make_switch(params):
-    """Instantiate a Switch from module parameters."""
-    return Switch(
+    """
+    Instantiate the correct Switch subclass from module parameters.
+
+    Auto-detects the switch model by default.  Pass ``model`` to override
+    detection for unsupported or misidentified hardware::
+
+        model: TL-SG1016DE   # hardware-version prefix
+        model: SwitchDE       # class name
+    """
+    return _sdk_make_switch(
         host=params['host'],
-        username=params['username'],
+        username=params.get('username', 'admin'),
         password=params['password'],
-        timeout=params['timeout'],
+        timeout=params.get('timeout', 10.0),
+        model=params.get('model'),
     )
 
 
