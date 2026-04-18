@@ -23,11 +23,17 @@ options:
     description: Login password.
     required: true
     type: str
-    no_log: true
   timeout:
     description: HTTP request timeout in seconds.
     type: float
     default: 10.0
+  model:
+    description: >
+      Override model autodetection. Accepts a hardware model prefix
+      (e.g. C(TL-SG108E), C(TL-SG1016DE)) or a class name (C(Switch),
+      C(SwitchDE)). Only needed if autodetection fails.
+    type: str
+    required: false
   dest_port:
     description: >
       Port that receives the mirrored traffic (1-based).

@@ -1,6 +1,6 @@
-namespace: ordo_artificum
+namespace: jfrancis42
 name: tplink
-version: 0.2.0
+version: 0.2.1
 readme: README.md
 description: Ansible collection for managing TP-Link managed switches via their web UI
 license:
@@ -14,6 +14,7 @@ tags:
   - vlan
 repository: https://github.com/jfrancis42/ansible-tplink
 homepage: https://github.com/jfrancis42/ansible-tplink
+documentation: https://github.com/jfrancis42/ansible-tplink
 issues: https://github.com/jfrancis42/ansible-tplink/issues
 build_ignore:
   - "*.pyc"
