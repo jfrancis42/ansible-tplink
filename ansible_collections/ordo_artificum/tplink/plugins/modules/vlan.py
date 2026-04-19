@@ -263,6 +263,7 @@ def run_module():
                             sw.set_mtu_vlan(enabled=False)
 
                 if changed and not module.check_mode:
+                    sw.save_config()
                     mv = sw.get_mtu_vlan()
 
                 module.exit_json(changed=changed, vlan=serialize_mtu_vlan(mv))
@@ -287,6 +288,7 @@ def run_module():
                             sw.set_dot1q_enabled(False)
                         if pv_on:
                             sw.set_port_vlan_enabled(False)
+                        sw.save_config()
 
                 module.exit_json(changed=changed, vlan=dict(mode='none', vlans=[]))
                 return
@@ -303,6 +305,8 @@ def run_module():
 
             # If no vlan_id is given, mode change was the whole job
             if p['vlan_id'] is None:
+                if changed and not module.check_mode:
+                    sw.save_config()
                 vlan_info = _build_vlan_return(sw, vlan_mode, module.check_mode)
                 module.exit_json(changed=changed, vlan=vlan_info)
                 return
@@ -389,6 +393,8 @@ def run_module():
                             sw.delete_port_vlan(vid)
 
             # Build return value
+            if changed and not module.check_mode:
+                sw.save_config()
             vlan_info = _build_vlan_return(sw, vlan_mode, module.check_mode)
 
     except Exception as e:

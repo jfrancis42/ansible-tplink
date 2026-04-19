@@ -192,6 +192,7 @@ def run_module():
 
             # Re-read final state (skip on check mode or if nothing changed)
             if changed and not module.check_mode:
+                sw.save_config()
                 final_info = sw.get_system_info()
                 final_ip = sw.get_ip_settings()
                 final_led = sw.get_led()

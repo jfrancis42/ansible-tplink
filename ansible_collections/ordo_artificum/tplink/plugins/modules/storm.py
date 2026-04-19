@@ -192,6 +192,7 @@ def run_module():
                         )
                     else:
                         sw.set_storm_control(target_ports, enabled=False)
+                    sw.save_config()
                     all_sc = sw.get_storm_control()
                     sc_map = {s.port: s for s in all_sc}
 

@@ -139,6 +139,7 @@ def run_module():
                     sw.set_loop_prevention(p['loop_prevention'])
 
             if changed and not module.check_mode:
+                sw.save_config()
                 current_igmp = sw.get_igmp_snooping()
                 current_lp = sw.get_loop_prevention()
 

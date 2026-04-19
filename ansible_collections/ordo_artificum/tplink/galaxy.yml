@@ -1,6 +1,6 @@
 namespace: jfrancis42
 name: tplink
-version: 0.2.1
+version: 0.2.2
 readme: README.md
 description: Ansible collection for managing TP-Link managed switches via their web UI
 license:

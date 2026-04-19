@@ -137,6 +137,7 @@ def run_module():
                         sw.set_port_trunk(gid, [])
 
             if changed and not module.check_mode:
+                sw.save_config()
                 tc = sw.get_port_trunk()
 
     except Exception as e:

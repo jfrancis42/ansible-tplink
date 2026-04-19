@@ -154,6 +154,7 @@ def run_module():
                                            ingress_ports=[], egress_ports=[])
 
             if changed and not module.check_mode:
+                sw.save_config()
                 current = sw.get_port_mirror()
 
     except Exception as e:

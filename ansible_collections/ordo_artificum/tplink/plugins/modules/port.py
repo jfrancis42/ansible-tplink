@@ -166,6 +166,7 @@ def run_module():
                         speed=desired_speed,
                         flow_control=p['flow_control'],
                     )
+                    sw.save_config()
                     all_ports = sw.get_port_settings()
                     port_map = {pi.port: pi for pi in all_ports}
 

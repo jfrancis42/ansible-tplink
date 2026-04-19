@@ -157,6 +157,7 @@ def run_module():
                         sw.set_port_priority(target_ports, desired_prio)
 
             if changed and not module.check_mode:
+                sw.save_config()
                 current_mode, current_ports = sw.get_qos_settings()
 
     except Exception as e:

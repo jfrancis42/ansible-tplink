@@ -138,6 +138,7 @@ def run_module():
                 changed = True
                 if not module.check_mode:
                     sw.set_bandwidth_control(target_ports, desired_ingress, desired_egress)
+                    sw.save_config()
                     all_bw = sw.get_bandwidth_control()
                     bw_map = {b.port: b for b in all_bw}
 

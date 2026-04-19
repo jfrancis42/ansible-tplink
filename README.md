@@ -973,6 +973,25 @@ use it in subsequent tasks:
 
 ---
 
+## Persistent configuration
+
+Flash-write behaviour differs by model:
+
+| Model | Behaviour |
+|-------|-----------|
+| TL-SG108E (Easy Smart series) | Auto-saves every write to flash.  No explicit save step needed. |
+| TL-SG1016DE (DE series) | Does not auto-save.  Changes live in RAM only until the flash is written. |
+
+Every write module calls `save_config()` automatically after applying
+changes — it is a no-op on TL-SG108E and performs the flash write on
+TL-SG1016DE — so **no extra step is needed** in either case.  Ansible
+tasks are always persistent.
+
+In `--check` mode no write is sent to the switch, and `save_config()` is
+also skipped.
+
+---
+
 ## Check mode
 
 All modules support `--check` mode.  No changes are written to the
@@ -982,10 +1001,11 @@ switch; the return value shows what would have changed.
 ansible-playbook site.yml --check --diff
 ```
 
-Two exceptions to the "no writes" rule in check mode:
+Three exceptions to the "no writes" rule in check mode:
 - `backup_config` always writes the local file (it reads from the switch
   and is non-destructive)
 - `cable_diag` always runs the diagnostic (it is read-only)
+- `save_config()` is skipped — no flash write occurs
 
 ---
 
