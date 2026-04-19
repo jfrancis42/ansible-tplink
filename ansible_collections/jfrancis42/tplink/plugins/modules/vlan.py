@@ -101,7 +101,7 @@ notes:
 EXAMPLES = r'''
 # Enable 802.1Q mode and create VLAN 10 with port 8 as trunk, port 1 as access
 - name: Create VLAN 10
-  ordo_artificum.tplink.vlan:
+  jfrancis42.tplink.vlan:
     host: 192.168.0.1
     password: admin
     vlan_mode: dot1q
@@ -115,7 +115,7 @@ EXAMPLES = r'''
 
 # Delete VLAN 10
 - name: Remove VLAN 10
-  ordo_artificum.tplink.vlan:
+  jfrancis42.tplink.vlan:
     host: 192.168.0.1
     password: admin
     vlan_mode: dot1q
@@ -125,7 +125,7 @@ EXAMPLES = r'''
 
 # Port-based VLAN
 - name: Create port-based VLAN 2
-  ordo_artificum.tplink.vlan:
+  jfrancis42.tplink.vlan:
     host: 192.168.0.1
     password: admin
     vlan_mode: port_based
@@ -136,7 +136,7 @@ EXAMPLES = r'''
 
 # MTU VLAN — port 8 is the uplink, all other ports are isolated
 - name: Enable MTU VLAN
-  ordo_artificum.tplink.vlan:
+  jfrancis42.tplink.vlan:
     host: 192.168.0.1
     password: admin
     vlan_mode: mtu
@@ -146,7 +146,7 @@ EXAMPLES = r'''
 
 # Disable MTU VLAN
 - name: Disable MTU VLAN
-  ordo_artificum.tplink.vlan:
+  jfrancis42.tplink.vlan:
     host: 192.168.0.1
     password: admin
     vlan_mode: mtu
@@ -168,7 +168,7 @@ changed:
 from ansible.module_utils.basic import AnsibleModule
 
 try:
-    from ansible_collections.ordo_artificum.tplink.plugins.module_utils.common import (
+    from ansible_collections.jfrancis42.tplink.plugins.module_utils.common import (
         CONNECTION_ARGS, make_switch, HAS_SDK, SDK_ERROR,
         serialize_dot1q_vlan_entry, serialize_port_vlan_entry,
         serialize_mtu_vlan, _bits_to_ports, _ports_to_bits,

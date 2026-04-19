@@ -62,7 +62,7 @@ notes:
 
 EXAMPLES = r'''
 - name: Limit port 3 ingress to 1 Mbps, egress to 512 kbps
-  ordo_artificum.tplink.bandwidth:
+  jfrancis42.tplink.bandwidth:
     host: 192.168.0.1
     password: admin
     port: [3]
@@ -71,7 +71,7 @@ EXAMPLES = r'''
   connection: local
 
 - name: Remove bandwidth limits from ports 1 and 2
-  ordo_artificum.tplink.bandwidth:
+  jfrancis42.tplink.bandwidth:
     host: 192.168.0.1
     password: admin
     port: [1, 2]
@@ -94,7 +94,7 @@ changed:
 from ansible.module_utils.basic import AnsibleModule
 
 try:
-    from ansible_collections.ordo_artificum.tplink.plugins.module_utils.common import (
+    from ansible_collections.jfrancis42.tplink.plugins.module_utils.common import (
         CONNECTION_ARGS, make_switch, HAS_SDK, SDK_ERROR, serialize_bandwidth,
     )
 except ImportError:

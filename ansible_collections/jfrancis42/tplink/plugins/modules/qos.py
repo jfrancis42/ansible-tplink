@@ -62,7 +62,7 @@ notes:
 
 EXAMPLES = r'''
 - name: Set QoS to port-based and prioritise port 1
-  ordo_artificum.tplink.qos:
+  jfrancis42.tplink.qos:
     host: 192.168.0.1
     password: admin
     mode: PORT_BASED
@@ -71,7 +71,7 @@ EXAMPLES = r'''
   connection: local
 
 - name: Switch to DSCP-based QoS
-  ordo_artificum.tplink.qos:
+  jfrancis42.tplink.qos:
     host: 192.168.0.1
     password: admin
     mode: DSCP
@@ -96,7 +96,7 @@ changed:
 from ansible.module_utils.basic import AnsibleModule
 
 try:
-    from ansible_collections.ordo_artificum.tplink.plugins.module_utils.common import (
+    from ansible_collections.jfrancis42.tplink.plugins.module_utils.common import (
         CONNECTION_ARGS, make_switch, HAS_SDK, SDK_ERROR,
         serialize_qos_port, QoSMode,
     )

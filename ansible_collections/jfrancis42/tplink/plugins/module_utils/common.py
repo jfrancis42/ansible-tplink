@@ -6,7 +6,7 @@ __metaclass__ = type
 # ---------------------------------------------------------------------------
 
 try:
-    from ansible_collections.ordo_artificum.tplink.plugins.module_utils.tplink_switch import (
+    from ansible_collections.jfrancis42.tplink.plugins.module_utils.tplink_switch import (
         Switch, PortSpeed, QoSMode, StormType, STORM_RATE_KBPS,
         _bits_to_ports, _ports_to_bits,
         make_switch as _sdk_make_switch,

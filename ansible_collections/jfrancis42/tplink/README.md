@@ -1,4 +1,4 @@
-# ordo_artificum.tplink — Ansible Collection for TP-Link Managed Switches
+# jfrancis42.tplink — Ansible Collection for TP-Link Managed Switches
 
 Manage TP-Link managed switches entirely from Ansible — no CLI, no SSH,
 no REST API required.  The collection reverse-engineers the switch's HTTP
@@ -63,13 +63,13 @@ pip install tplink-tool   # SDK only
 ## Installation
 
 ```bash
-ansible-galaxy collection install ordo_artificum.tplink
+ansible-galaxy collection install jfrancis42.tplink
 ```
 
 Or pin a specific version:
 
 ```bash
-ansible-galaxy collection install ordo_artificum.tplink:==0.1.0
+ansible-galaxy collection install jfrancis42.tplink:==0.1.0
 ```
 
 ---
@@ -84,7 +84,7 @@ ansible-galaxy collection install ordo_artificum.tplink:==0.1.0
   tasks:
 
     - name: Gather switch facts
-      ordo_artificum.tplink.facts:
+      jfrancis42.tplink.facts:
         host: "{{ ansible_host }}"
         password: "{{ tplink_password }}"
 
@@ -93,7 +93,7 @@ ansible-galaxy collection install ordo_artificum.tplink:==0.1.0
         msg: "Firmware: {{ tplink.system.firmware }}"
 
     - name: Ensure loop prevention is on
-      ordo_artificum.tplink.igmp:
+      jfrancis42.tplink.igmp:
         host: "{{ ansible_host }}"
         password: "{{ tplink_password }}"
         loop_prevention: true
@@ -184,7 +184,7 @@ failing the entire task.
 
 ```yaml
 - name: Gather switch facts
-  ordo_artificum.tplink.facts:
+  jfrancis42.tplink.facts:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
   connection: local
@@ -237,7 +237,7 @@ Only parameters you specify are changed; everything else is left as-is.
 ```yaml
 # Set hostname/description
 - name: Set switch description
-  ordo_artificum.tplink.system:
+  jfrancis42.tplink.system:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     description: core-switch-01
@@ -245,7 +245,7 @@ Only parameters you specify are changed; everything else is left as-is.
 
 # Configure a static IP (will change management address — update inventory after)
 - name: Set static IP
-  ordo_artificum.tplink.system:
+  jfrancis42.tplink.system:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     ip: 10.1.0.31
@@ -256,7 +256,7 @@ Only parameters you specify are changed; everything else is left as-is.
 
 # Enable DHCP
 - name: Enable DHCP
-  ordo_artificum.tplink.system:
+  jfrancis42.tplink.system:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     dhcp: true
@@ -264,7 +264,7 @@ Only parameters you specify are changed; everything else is left as-is.
 
 # Turn off port LEDs
 - name: Disable LEDs
-  ordo_artificum.tplink.system:
+  jfrancis42.tplink.system:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     led: false
@@ -272,7 +272,7 @@ Only parameters you specify are changed; everything else is left as-is.
 
 # Change the admin password
 - name: Rotate admin password
-  ordo_artificum.tplink.system:
+  jfrancis42.tplink.system:
     host: "{{ ansible_host }}"
     password: "{{ current_password }}"
     new_password: "{{ new_password }}"
@@ -303,7 +303,7 @@ Port numbers are 1-based.
 ```yaml
 # Ensure ports 1-4 are up at auto speed
 - name: Enable access ports
-  ordo_artificum.tplink.port:
+  jfrancis42.tplink.port:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     port: [1, 2, 3, 4]
@@ -313,7 +313,7 @@ Port numbers are 1-based.
 
 # Disable unused ports
 - name: Shut down unused ports
-  ordo_artificum.tplink.port:
+  jfrancis42.tplink.port:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     port: [5, 6, 7]
@@ -322,7 +322,7 @@ Port numbers are 1-based.
 
 # Force uplink to 1G full-duplex with flow control
 - name: Configure uplink port
-  ordo_artificum.tplink.port:
+  jfrancis42.tplink.port:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     port: [8]
@@ -341,7 +341,7 @@ supports up to two LAG groups.
 ```yaml
 # Bond ports 7 and 8 into LAG group 1
 - name: Create uplink LAG
-  ordo_artificum.tplink.trunk:
+  jfrancis42.tplink.trunk:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     group_id: 1
@@ -351,7 +351,7 @@ supports up to two LAG groups.
 
 # Remove the LAG
 - name: Remove LAG group 1
-  ordo_artificum.tplink.trunk:
+  jfrancis42.tplink.trunk:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     group_id: 1
@@ -370,7 +370,7 @@ port for analysis.
 ```yaml
 # Mirror all traffic on port 1 to port 8 (for a capture device on port 8)
 - name: Enable port mirroring
-  ordo_artificum.tplink.mirror:
+  jfrancis42.tplink.mirror:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     dest_port: 8
@@ -381,7 +381,7 @@ port for analysis.
 
 # Mirror ingress from multiple ports
 - name: Mirror ingress from ports 1-4
-  ordo_artificum.tplink.mirror:
+  jfrancis42.tplink.mirror:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     dest_port: 8
@@ -392,7 +392,7 @@ port for analysis.
 
 # Disable mirroring
 - name: Disable port mirroring
-  ordo_artificum.tplink.mirror:
+  jfrancis42.tplink.mirror:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     state: absent
@@ -409,7 +409,7 @@ is preserved on the switch.  At least one parameter must be specified.
 ```yaml
 # Enable IGMP snooping with report suppression
 - name: Enable IGMP snooping
-  ordo_artificum.tplink.igmp:
+  jfrancis42.tplink.igmp:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     igmp_enabled: true
@@ -418,7 +418,7 @@ is preserved on the switch.  At least one parameter must be specified.
 
 # Enable loop prevention
 - name: Enable loop prevention
-  ordo_artificum.tplink.igmp:
+  jfrancis42.tplink.igmp:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     loop_prevention: true
@@ -426,7 +426,7 @@ is preserved on the switch.  At least one parameter must be specified.
 
 # Enable both at once
 - name: Harden L2 settings
-  ordo_artificum.tplink.igmp:
+  jfrancis42.tplink.igmp:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     igmp_enabled: true
@@ -449,7 +449,7 @@ applies in `PORT_BASED` mode.
 ```yaml
 # Set port-based QoS and raise priority on the uplink
 - name: Configure QoS
-  ordo_artificum.tplink.qos:
+  jfrancis42.tplink.qos:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     mode: PORT_BASED
@@ -459,7 +459,7 @@ applies in `PORT_BASED` mode.
 
 # Switch to 802.1p (DSCP and 802.1p are common for VoIP/video)
 - name: Use 802.1p QoS
-  ordo_artificum.tplink.qos:
+  jfrancis42.tplink.qos:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     mode: DOT1P
@@ -467,7 +467,7 @@ applies in `PORT_BASED` mode.
 
 # Set multiple ports to the same priority (just mode, no ports)
 - name: Use port-based QoS mode only
-  ordo_artificum.tplink.qos:
+  jfrancis42.tplink.qos:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     mode: PORT_BASED
@@ -487,7 +487,7 @@ A value of `0` removes the limit.
 ```yaml
 # Limit a guest-network port to 10 Mbps in each direction
 - name: Rate-limit guest port
-  ordo_artificum.tplink.bandwidth:
+  jfrancis42.tplink.bandwidth:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     port: [3]
@@ -497,7 +497,7 @@ A value of `0` removes the limit.
 
 # Limit upload to 1 Mbps on ports 1-4 (restrict clients, not the switch uplink)
 - name: Restrict client upload
-  ordo_artificum.tplink.bandwidth:
+  jfrancis42.tplink.bandwidth:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     port: [1, 2, 3, 4]
@@ -507,7 +507,7 @@ A value of `0` removes the limit.
 
 # Remove all bandwidth limits
 - name: Remove bandwidth limits
-  ordo_artificum.tplink.bandwidth:
+  jfrancis42.tplink.bandwidth:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     port: [1, 2, 3, 4, 5, 6, 7, 8]
@@ -546,7 +546,7 @@ Defaults to all three when `enabled: true` and `storm_types` is omitted.
 ```yaml
 # Enable storm control on all access ports, limit to 1024 kbps
 - name: Enable storm control on access ports
-  ordo_artificum.tplink.storm:
+  jfrancis42.tplink.storm:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     port: [1, 2, 3, 4, 5, 6, 7]
@@ -556,7 +556,7 @@ Defaults to all three when `enabled: true` and `storm_types` is omitted.
 
 # Limit only broadcast and multicast (not unknown unicast) on the uplink
 - name: Partial storm control on uplink
-  ordo_artificum.tplink.storm:
+  jfrancis42.tplink.storm:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     port: [8]
@@ -567,7 +567,7 @@ Defaults to all three when `enabled: true` and `storm_types` is omitted.
 
 # Disable storm control on port 1
 - name: Disable storm control on port 1
-  ordo_artificum.tplink.storm:
+  jfrancis42.tplink.storm:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     port: [1]
@@ -594,7 +594,7 @@ assigned to the right VLAN.
 ```yaml
 # Enable 802.1Q mode and create a management VLAN
 - name: Create management VLAN 10
-  ordo_artificum.tplink.vlan:
+  jfrancis42.tplink.vlan:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     vlan_mode: dot1q
@@ -608,7 +608,7 @@ assigned to the right VLAN.
 
 # Create a second VLAN for guest traffic
 - name: Create guest VLAN 20
-  ordo_artificum.tplink.vlan:
+  jfrancis42.tplink.vlan:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     vlan_mode: dot1q
@@ -622,7 +622,7 @@ assigned to the right VLAN.
 
 # Delete a VLAN
 - name: Remove VLAN 20
-  ordo_artificum.tplink.vlan:
+  jfrancis42.tplink.vlan:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     vlan_mode: dot1q
@@ -632,7 +632,7 @@ assigned to the right VLAN.
 
 # Just ensure 802.1Q mode is on (no VLAN changes)
 - name: Enable 802.1Q mode
-  ordo_artificum.tplink.vlan:
+  jfrancis42.tplink.vlan:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     vlan_mode: dot1q
@@ -648,7 +648,7 @@ different groups cannot (no tagging, no trunking).
 ```yaml
 # Create two isolated port groups
 - name: Create port-based VLAN 1 (ports 1-4)
-  ordo_artificum.tplink.vlan:
+  jfrancis42.tplink.vlan:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     vlan_mode: port_based
@@ -658,7 +658,7 @@ different groups cannot (no tagging, no trunking).
   connection: local
 
 - name: Create port-based VLAN 2 (ports 5-8)
-  ordo_artificum.tplink.vlan:
+  jfrancis42.tplink.vlan:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     vlan_mode: port_based
@@ -676,7 +676,7 @@ Useful for separating client devices that all share the same uplink.
 ```yaml
 # Enable MTU VLAN — port 8 is the uplink
 - name: Enable MTU VLAN
-  ordo_artificum.tplink.vlan:
+  jfrancis42.tplink.vlan:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     vlan_mode: mtu
@@ -686,7 +686,7 @@ Useful for separating client devices that all share the same uplink.
 
 # Disable MTU VLAN
 - name: Disable MTU VLAN
-  ordo_artificum.tplink.vlan:
+  jfrancis42.tplink.vlan:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     vlan_mode: mtu
@@ -709,7 +709,7 @@ backup/restore, or cable diagnostics.
 ```yaml
 # Reboot the switch
 - name: Reboot switch
-  ordo_artificum.tplink.maintenance:
+  jfrancis42.tplink.maintenance:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     action: reboot
@@ -725,7 +725,7 @@ backup/restore, or cable diagnostics.
 
 # Back up configuration to a local file
 - name: Back up switch config
-  ordo_artificum.tplink.maintenance:
+  jfrancis42.tplink.maintenance:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     action: backup_config
@@ -734,7 +734,7 @@ backup/restore, or cable diagnostics.
 
 # Restore a previously saved configuration
 - name: Restore switch config
-  ordo_artificum.tplink.maintenance:
+  jfrancis42.tplink.maintenance:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     action: restore_config
@@ -743,7 +743,7 @@ backup/restore, or cable diagnostics.
 
 # Run cable diagnostics on all ports
 - name: Run cable test
-  ordo_artificum.tplink.maintenance:
+  jfrancis42.tplink.maintenance:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     action: cable_diag
@@ -757,7 +757,7 @@ backup/restore, or cable diagnostics.
 
 # Factory reset (DESTRUCTIVE — erases all config, resets IP to 192.168.0.1)
 - name: Factory reset
-  ordo_artificum.tplink.maintenance:
+  jfrancis42.tplink.maintenance:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     action: factory_reset
@@ -790,7 +790,7 @@ backup/restore, or cable diagnostics.
   tasks:
 
     - name: Set permanent IP address
-      ordo_artificum.tplink.system:
+      jfrancis42.tplink.system:
         host: "{{ initial_host }}"
         password: "{{ initial_password }}"
         ip: "{{ ansible_host }}"
@@ -801,7 +801,7 @@ backup/restore, or cable diagnostics.
       connection: local
 
     - name: Change default password
-      ordo_artificum.tplink.system:
+      jfrancis42.tplink.system:
         host: "{{ initial_host }}"
         password: "{{ initial_password }}"
         new_password: "{{ tplink_password }}"
@@ -815,7 +815,7 @@ backup/restore, or cable diagnostics.
         timeout: 30
 
     - name: Harden L2 settings
-      ordo_artificum.tplink.igmp:
+      jfrancis42.tplink.igmp:
         host: "{{ ansible_host }}"
         password: "{{ tplink_password }}"
         igmp_enabled: true
@@ -838,7 +838,7 @@ clients (30), with port 8 as a tagged uplink carrying all three.
   tasks:
 
     - name: Management VLAN 10 — port 1 access, port 8 trunk
-      ordo_artificum.tplink.vlan:
+      jfrancis42.tplink.vlan:
         host: "{{ ansible_host }}"
         password: "{{ tplink_password }}"
         vlan_mode: dot1q
@@ -851,7 +851,7 @@ clients (30), with port 8 as a tagged uplink carrying all three.
         state: present
 
     - name: Server VLAN 20 — ports 2-3 access, port 8 trunk
-      ordo_artificum.tplink.vlan:
+      jfrancis42.tplink.vlan:
         host: "{{ ansible_host }}"
         password: "{{ tplink_password }}"
         vlan_mode: dot1q
@@ -863,7 +863,7 @@ clients (30), with port 8 as a tagged uplink carrying all three.
         state: present
 
     - name: Client VLAN 30 — ports 4-7 access, port 8 trunk
-      ordo_artificum.tplink.vlan:
+      jfrancis42.tplink.vlan:
         host: "{{ ansible_host }}"
         password: "{{ tplink_password }}"
         vlan_mode: dot1q
@@ -893,7 +893,7 @@ clients (30), with port 8 as a tagged uplink carrying all three.
       run_once: true
 
     - name: Back up switch config
-      ordo_artificum.tplink.maintenance:
+      jfrancis42.tplink.maintenance:
         host: "{{ ansible_host }}"
         password: "{{ tplink_password }}"
         action: backup_config
@@ -911,7 +911,7 @@ clients (30), with port 8 as a tagged uplink carrying all three.
   tasks:
 
     - name: Enable loop prevention and IGMP snooping
-      ordo_artificum.tplink.igmp:
+      jfrancis42.tplink.igmp:
         host: "{{ ansible_host }}"
         password: "{{ tplink_password }}"
         igmp_enabled: true
@@ -919,7 +919,7 @@ clients (30), with port 8 as a tagged uplink carrying all three.
         loop_prevention: true
 
     - name: Enable storm control on all access ports
-      ordo_artificum.tplink.storm:
+      jfrancis42.tplink.storm:
         host: "{{ ansible_host }}"
         password: "{{ tplink_password }}"
         port: [1, 2, 3, 4, 5, 6, 7]
@@ -928,7 +928,7 @@ clients (30), with port 8 as a tagged uplink carrying all three.
         storm_types: [BROADCAST, MULTICAST, UNKNOWN_UNICAST]
 
     - name: Disable unused ports
-      ordo_artificum.tplink.port:
+      jfrancis42.tplink.port:
         host: "{{ ansible_host }}"
         password: "{{ tplink_password }}"
         port: "{{ unused_ports }}"
@@ -946,7 +946,7 @@ use it in subsequent tasks:
 
 ```yaml
 - name: Gather facts
-  ordo_artificum.tplink.facts:
+  jfrancis42.tplink.facts:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
   connection: local
@@ -957,7 +957,7 @@ use it in subsequent tasks:
   when: "'20230218' not in tplink.system.firmware"
 
 - name: Run cable diagnostics
-  ordo_artificum.tplink.maintenance:
+  jfrancis42.tplink.maintenance:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
     action: cable_diag

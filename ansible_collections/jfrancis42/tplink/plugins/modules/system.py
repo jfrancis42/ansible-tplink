@@ -67,7 +67,7 @@ notes:
 
 EXAMPLES = r'''
 - name: Set description and static IP
-  ordo_artificum.tplink.system:
+  jfrancis42.tplink.system:
     host: 192.168.0.1
     password: admin
     description: core-switch
@@ -78,14 +78,14 @@ EXAMPLES = r'''
   connection: local
 
 - name: Turn off LEDs
-  ordo_artificum.tplink.system:
+  jfrancis42.tplink.system:
     host: 192.168.0.1
     password: admin
     led: false
   connection: local
 
 - name: Change admin password
-  ordo_artificum.tplink.system:
+  jfrancis42.tplink.system:
     host: 192.168.0.1
     password: "{{ current_password }}"
     new_password: "{{ new_password }}"
@@ -114,7 +114,7 @@ changed:
 from ansible.module_utils.basic import AnsibleModule
 
 try:
-    from ansible_collections.ordo_artificum.tplink.plugins.module_utils.common import (
+    from ansible_collections.jfrancis42.tplink.plugins.module_utils.common import (
         CONNECTION_ARGS, make_switch, HAS_SDK, SDK_ERROR,
         serialize_system_info, serialize_ip_settings,
     )

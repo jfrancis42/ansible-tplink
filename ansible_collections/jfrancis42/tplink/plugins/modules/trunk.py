@@ -59,7 +59,7 @@ notes:
 
 EXAMPLES = r'''
 - name: Create LAG group 1 with ports 1 and 2
-  ordo_artificum.tplink.trunk:
+  jfrancis42.tplink.trunk:
     host: 192.168.0.1
     password: admin
     group_id: 1
@@ -68,7 +68,7 @@ EXAMPLES = r'''
   connection: local
 
 - name: Remove LAG group 1
-  ordo_artificum.tplink.trunk:
+  jfrancis42.tplink.trunk:
     host: 192.168.0.1
     password: admin
     group_id: 1
@@ -90,7 +90,7 @@ changed:
 from ansible.module_utils.basic import AnsibleModule
 
 try:
-    from ansible_collections.ordo_artificum.tplink.plugins.module_utils.common import (
+    from ansible_collections.jfrancis42.tplink.plugins.module_utils.common import (
         CONNECTION_ARGS, make_switch, HAS_SDK, SDK_ERROR, serialize_trunk,
     )
 except ImportError:

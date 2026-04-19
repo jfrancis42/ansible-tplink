@@ -55,7 +55,7 @@ notes:
 
 EXAMPLES = r'''
 - name: Enable IGMP snooping with report suppression
-  ordo_artificum.tplink.igmp:
+  jfrancis42.tplink.igmp:
     host: 192.168.0.1
     password: admin
     igmp_enabled: true
@@ -63,7 +63,7 @@ EXAMPLES = r'''
   connection: local
 
 - name: Enable loop prevention only
-  ordo_artificum.tplink.igmp:
+  jfrancis42.tplink.igmp:
     host: 192.168.0.1
     password: admin
     loop_prevention: true
@@ -88,7 +88,7 @@ changed:
 from ansible.module_utils.basic import AnsibleModule
 
 try:
-    from ansible_collections.ordo_artificum.tplink.plugins.module_utils.common import (
+    from ansible_collections.jfrancis42.tplink.plugins.module_utils.common import (
         CONNECTION_ARGS, make_switch, HAS_SDK, SDK_ERROR, serialize_igmp,
     )
 except ImportError:

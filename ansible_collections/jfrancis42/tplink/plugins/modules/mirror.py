@@ -64,7 +64,7 @@ notes:
 
 EXAMPLES = r'''
 - name: Mirror ingress+egress from port 1 to port 8
-  ordo_artificum.tplink.mirror:
+  jfrancis42.tplink.mirror:
     host: 192.168.0.1
     password: admin
     dest_port: 8
@@ -74,7 +74,7 @@ EXAMPLES = r'''
   connection: local
 
 - name: Disable port mirroring
-  ordo_artificum.tplink.mirror:
+  jfrancis42.tplink.mirror:
     host: 192.168.0.1
     password: admin
     state: absent
@@ -95,7 +95,7 @@ changed:
 from ansible.module_utils.basic import AnsibleModule
 
 try:
-    from ansible_collections.ordo_artificum.tplink.plugins.module_utils.common import (
+    from ansible_collections.jfrancis42.tplink.plugins.module_utils.common import (
         CONNECTION_ARGS, make_switch, HAS_SDK, SDK_ERROR, serialize_mirror,
     )
 except ImportError:

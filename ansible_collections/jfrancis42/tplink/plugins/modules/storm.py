@@ -65,7 +65,7 @@ notes:
 
 EXAMPLES = r'''
 - name: Limit broadcast and multicast on ports 1-4 to 1024 kbps
-  ordo_artificum.tplink.storm:
+  jfrancis42.tplink.storm:
     host: 192.168.0.1
     password: admin
     port: [1, 2, 3, 4]
@@ -75,7 +75,7 @@ EXAMPLES = r'''
   connection: local
 
 - name: Disable storm control on port 1
-  ordo_artificum.tplink.storm:
+  jfrancis42.tplink.storm:
     host: 192.168.0.1
     password: admin
     port: [1]
@@ -97,7 +97,7 @@ changed:
 from ansible.module_utils.basic import AnsibleModule
 
 try:
-    from ansible_collections.ordo_artificum.tplink.plugins.module_utils.common import (
+    from ansible_collections.jfrancis42.tplink.plugins.module_utils.common import (
         CONNECTION_ARGS, make_switch, HAS_SDK, SDK_ERROR,
         serialize_storm, StormType,
     )

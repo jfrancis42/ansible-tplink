@@ -62,7 +62,7 @@ notes:
 
 EXAMPLES = r'''
 - name: Enable port 1 at auto speed, no flow control
-  ordo_artificum.tplink.port:
+  jfrancis42.tplink.port:
     host: 192.168.0.1
     password: admin
     port: [1]
@@ -72,7 +72,7 @@ EXAMPLES = r'''
   connection: local
 
 - name: Disable ports 5 through 8
-  ordo_artificum.tplink.port:
+  jfrancis42.tplink.port:
     host: 192.168.0.1
     password: admin
     port: [5, 6, 7, 8]
@@ -80,7 +80,7 @@ EXAMPLES = r'''
   connection: local
 
 - name: Force port 2 to 100M full-duplex
-  ordo_artificum.tplink.port:
+  jfrancis42.tplink.port:
     host: 192.168.0.1
     password: admin
     port: [2]
@@ -102,7 +102,7 @@ changed:
 from ansible.module_utils.basic import AnsibleModule
 
 try:
-    from ansible_collections.ordo_artificum.tplink.plugins.module_utils.common import (
+    from ansible_collections.jfrancis42.tplink.plugins.module_utils.common import (
         CONNECTION_ARGS, make_switch, HAS_SDK, SDK_ERROR,
         serialize_port_info, PortSpeed,
     )

@@ -43,7 +43,7 @@ notes:
 
 EXAMPLES = r'''
 - name: Gather switch facts
-  ordo_artificum.tplink.facts:
+  jfrancis42.tplink.facts:
     host: "{{ ansible_host }}"
     password: "{{ tplink_password }}"
   connection: local
@@ -115,7 +115,7 @@ ansible_facts:
 from ansible.module_utils.basic import AnsibleModule
 
 try:
-    from ansible_collections.ordo_artificum.tplink.plugins.module_utils.common import (
+    from ansible_collections.jfrancis42.tplink.plugins.module_utils.common import (
         CONNECTION_ARGS, make_switch, HAS_SDK, SDK_ERROR,
         serialize_system_info, serialize_ip_settings, serialize_port_info,
         serialize_port_stats, serialize_mirror, serialize_trunk,

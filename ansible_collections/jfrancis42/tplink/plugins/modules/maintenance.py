@@ -82,14 +82,14 @@ notes:
 
 EXAMPLES = r'''
 - name: Reboot switch
-  ordo_artificum.tplink.maintenance:
+  jfrancis42.tplink.maintenance:
     host: 192.168.0.1
     password: admin
     action: reboot
   connection: local
 
 - name: Back up configuration
-  ordo_artificum.tplink.maintenance:
+  jfrancis42.tplink.maintenance:
     host: 192.168.0.1
     password: admin
     action: backup_config
@@ -97,7 +97,7 @@ EXAMPLES = r'''
   connection: local
 
 - name: Restore configuration
-  ordo_artificum.tplink.maintenance:
+  jfrancis42.tplink.maintenance:
     host: 192.168.0.1
     password: admin
     action: restore_config
@@ -105,7 +105,7 @@ EXAMPLES = r'''
   connection: local
 
 - name: Run cable diagnostics on all ports
-  ordo_artificum.tplink.maintenance:
+  jfrancis42.tplink.maintenance:
     host: 192.168.0.1
     password: admin
     action: cable_diag
@@ -118,7 +118,7 @@ EXAMPLES = r'''
   loop: "{{ diag.cable_diag }}"
 
 - name: Factory reset (DESTRUCTIVE)
-  ordo_artificum.tplink.maintenance:
+  jfrancis42.tplink.maintenance:
     host: 192.168.0.1
     password: admin
     action: factory_reset
@@ -156,7 +156,7 @@ import os
 from ansible.module_utils.basic import AnsibleModule
 
 try:
-    from ansible_collections.ordo_artificum.tplink.plugins.module_utils.common import (
+    from ansible_collections.jfrancis42.tplink.plugins.module_utils.common import (
         CONNECTION_ARGS, make_switch, HAS_SDK, SDK_ERROR, serialize_cable_diag,
     )
 except ImportError:
